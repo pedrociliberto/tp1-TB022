@@ -25,7 +25,6 @@ fetch(`http://localhost:5000/bandas/${id}`)
 
 function update_data(data) {
     if (data.success === true) {
-        alert("Banda editada exitosamente")
         window.location.href = `/bandas/banda_ind?id=${id}`
     } else {
         alert("No se pudo editar la banda")
