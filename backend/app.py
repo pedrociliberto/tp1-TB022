@@ -41,16 +41,13 @@ def obtener_bandas():
     except:
         return jsonify({'message': 'Error al obtener las bandas'}), 500
     
-# Ruta para obtener la cantidad de bandas
+# Ruta para obtener el maximo id de las bandas
 
 @app.route("/bandas/count", methods = ['GET'])
 def obtener_cantidad_bandas():
-
     try:
-        bandas = Banda.query.all()
-        cantidad_bandas = len(bandas)
-
-        return jsonify({'cantidad_bandas': cantidad_bandas})
+        maximo_id = db.session.query(db.func.max(Banda.id)).scalar()
+        return jsonify({'max_id': maximo_id})
     except:
         return jsonify({'message': 'Error al obtener la cantidad de bandas'}), 500
     
