@@ -1,6 +1,5 @@
 function create_band(data) {
     if (data.success === true) {
-        alert("Banda creada correctamente")
         window.location.href = `/bandas/banda_ind?id=${data.id}`
     } else {
         alert("Error al crear banda")
