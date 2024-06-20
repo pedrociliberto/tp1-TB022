@@ -14,7 +14,7 @@ function parse_bandas (bandas) {
 
         const card = document.createElement("a");
         card.setAttribute("class", "card");
-        card.setAttribute("href", `/bandas/${bandas[index].id}`);
+        card.setAttribute("href", `/bandas/banda_ind?id=${bandas[index].id}`);
 
         const image = document.createElement("img");
         image.setAttribute("class", "band-image");
