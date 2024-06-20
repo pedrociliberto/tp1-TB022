@@ -52,7 +52,6 @@ function response_delete(response) {
 
 function handle_delete (data) {
     if (data.success === true) {
-        alert(`Banda eliminada exitosamente.`)
         window.location.href = "/bandas";
     } else {
         alert("No se pudo eliminar la banda")
