@@ -21,10 +21,10 @@ function crear_banda(event) {
     const pais_origen = form.get("pais_origen")
     const imagen = form.get("imagen")
     
-    function count_bands(data) {
-        const count = data.cantidad_bandas
+    function count_bands(banda) {
+        const max = banda.max_id
 
-        const id = count + 1
+        const id = max + 1
 
         fetch("http://localhost:5000/bandas/", {
         method: "POST",
