@@ -10,6 +10,8 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 port = 5000
 
+# Ruta para obtener todas las bandas
+
 @app.route("/bandas/", methods = ['GET'])
 def obtener_bandas():
 
@@ -39,22 +41,47 @@ def obtener_bandas():
     except:
         return jsonify({'message': 'Error al obtener las bandas'}), 500
     
-@app.route("/bandas/<id_banda>", methods = ['GET'])
-def obtener_banda(id_banda):
-    try:
-        banda = Banda.query.where(Banda.id == id_banda).first()
+# Ruta para obtener la cantidad de bandas
 
-        banda_data = {
-            'id': banda.id,
-            'nombre': banda.nombre,
-            'anio_creacion': banda.anio_creacion,
-            'genero': banda.genero,
-            'pais_origen': banda.pais_origen,
-            'imagen': banda.imagen
-        }
-        return banda_data
+@app.route("/bandas/count", methods = ['GET'])
+def obtener_cantidad_bandas():
+
+    try:
+        bandas = Banda.query.all()
+        cantidad_bandas = len(bandas)
+
+        return jsonify({'cantidad_bandas': cantidad_bandas})
     except:
-        return jsonify({'message': 'Error al obtener la banda'}), 500
+        return jsonify({'message': 'Error al obtener la cantidad de bandas'}), 500
+    
+# Ruta para crear una nueva banda
+    
+@app.route("/bandas/", methods = ['POST'])
+def crear_banda():
+    id = request.json['id']
+    nombre = request.json['nombre']
+    genero = request.json['genero']
+    anio_creacion = request.json['anio_creacion']
+    pais_origen = request.json['pais_origen']
+    imagen = request.json['imagen']
+
+    nueva_banda = Banda(
+        id = id,
+        nombre = nombre,
+        genero = genero,
+        anio_creacion = anio_creacion,
+        pais_origen = pais_origen,
+        imagen = imagen
+    )
+
+    try:
+        db.session.add(nueva_banda)
+        db.session.commit()
+        return jsonify({'success': True, 'id': id})
+    except:
+        return jsonify({'success': False}), 500
+    
+# Ruta para actualizar una banda
     
 @app.route("/bandas/", methods = ['PUT'])
 def actualizar_banda():
@@ -80,6 +107,27 @@ def actualizar_banda():
         return jsonify({'success': True})
     except:
         return jsonify({'success': False}), 500
+    
+# Ruta para obtener una banda por su id
+
+@app.route("/bandas/<id_banda>", methods = ['GET'])
+def obtener_banda(id_banda):
+    try:
+        banda = Banda.query.where(Banda.id == id_banda).first()
+
+        banda_data = {
+            'id': banda.id,
+            'nombre': banda.nombre,
+            'anio_creacion': banda.anio_creacion,
+            'genero': banda.genero,
+            'pais_origen': banda.pais_origen,
+            'imagen': banda.imagen
+        }
+        return banda_data
+    except:
+        return jsonify({'message': 'Error al obtener la banda'}), 500
+    
+# Ruta para eliminar una banda
 
 @app.route("/bandas/<id_banda>", methods = ['DELETE'])
 def eliminar_banda(id_banda):
