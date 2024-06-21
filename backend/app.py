@@ -162,6 +162,28 @@ def obtener_albums():
         return jsonify(tabla_albums)
     except:
         return jsonify({'message': 'Error al obtener los albums'}), 500
+    
+
+# Ruta para obtener un album por su id
+
+@app.route("/albums/<id_album>", methods = ['GET'])
+def obtener_album(id_album):
+    try:
+        album = Album.query.where(Album.id == id_album).first()
+
+        banda = Banda.query.where(Banda.id == album.banda_id).first()
+
+        album_data = {
+            'id': album.id,
+            'nombre': album.nombre,
+            'anio_publicado': album.anio_publicado,
+            'banda_id': album.banda_id,
+            'banda_nombre': banda.nombre, # Se agrega el nombre de la banda
+            'imagen': album.imagen
+        }
+        return jsonify(album_data)
+    except:
+        return jsonify({'message': 'Error al obtener el album'}), 500
 
 
 if __name__ == '__main__':
