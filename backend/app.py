@@ -135,6 +135,35 @@ def eliminar_banda(id_banda):
     except:
         return jsonify({'success': False}), 500
 
+# Ruta para obtener todos los albums
+
+@app.route("/albums/", methods = ['GET'])
+def obtener_albums():
+    try:
+        albums = Album.query.all()
+
+        tabla_albums = []
+
+        for album in albums:
+            id = album.id
+            nombre = album.nombre
+            anio_publicado = album.anio_publicado
+            banda_id = album.banda_id
+            imagen = album.imagen
+            
+            tabla_albums.append({
+                'id': id,
+                'nombre': nombre,
+                'anio_publicado': anio_publicado,
+                'banda_id': banda_id,
+                'imagen': imagen
+            })
+
+        return jsonify(tabla_albums)
+    except:
+        return jsonify({'message': 'Error al obtener los albums'}), 500
+
+
 if __name__ == '__main__':
     print('Iniciando servidor en http://localhost:5000')
     db.init_app(app)
