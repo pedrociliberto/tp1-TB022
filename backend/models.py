@@ -16,7 +16,8 @@ class Album(db.Model):
     __tablename__ = 'albums'
     
     id = db.Column(db.Integer, primary_key=True)
-    nombre = db.Column(db.String(30), nullable=False)
+    nombre = db.Column(db.String(50), nullable=False)
     anio_publicado = db.Column(db.Integer)
     banda_id = db.Column(db.Integer, db.ForeignKey('bandas.id'), nullable=False)
     imagen = db.Column(db.String(200))
+    relacion_banda = db.relationship('Banda', backref=db.backref('albums', lazy=True))
