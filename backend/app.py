@@ -163,6 +163,16 @@ def obtener_albums():
     except:
         return jsonify({'message': 'Error al obtener los albums'}), 500
     
+# Ruta para obtener el maximo id de los albums
+
+@app.route("/albums/count", methods = ['GET'])
+def obtener_cantidad_albums():
+    try:
+        maximo_id = db.session.query(db.func.max(Album.id)).scalar()
+        return jsonify({'max_id': maximo_id})
+    except:
+        return jsonify({'message': 'Error al obtener la cantidad de albums'}), 500
+    
 
 # Ruta para obtener un album por su id
 
@@ -185,6 +195,34 @@ def obtener_album(id_album):
     except:
         return jsonify({'message': 'Error al obtener el album'}), 500
 
+# Ruta para crear un nuevo album
+@app.route("/albums/", methods = ['POST'])
+def crear_album():
+    id = request.json['id']
+    nombre = request.json['nombre']
+    anio_publicado = request.json['anio_publicado']
+    banda_nombre = request.json['banda_nombre']
+    imagen = request.json['imagen']
+
+    banda = Banda.query.where(Banda.nombre == banda_nombre).first()
+
+    if not banda:
+        return jsonify({'success': False, 'message': 'La banda no existe'}), 400
+
+    nuevo_album = Album(
+        id = id,
+        nombre = nombre,
+        anio_publicado = anio_publicado,
+        banda_id = banda.id,
+        imagen = imagen
+    )
+
+    try:
+        db.session.add(nuevo_album)
+        db.session.commit()
+        return jsonify({'success': True, 'id': id})
+    except:
+        return jsonify({'success': False}), 500
 
 if __name__ == '__main__':
     print('Iniciando servidor en http://localhost:5000')
