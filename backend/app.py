@@ -138,6 +138,7 @@ def eliminar_banda(id_banda):
         return jsonify({'success': False}), 500
     
 # Ruta para obtener el nombre de una banda por su id
+
 @app.route("/bandas/<id_banda>", methods = ['GET'])
 def obtener_nombre_banda(id_banda):
     try:
@@ -207,6 +208,7 @@ def obtener_album(id_album):
         return jsonify({'message': 'Error al obtener el album'}), 500
 
 # Ruta para crear un nuevo album
+
 @app.route("/albums/", methods = ['POST'])
 def crear_album():
     id = request.json['id']
@@ -236,6 +238,7 @@ def crear_album():
         return jsonify({'success': False}), 500
 
 # Ruta para eliminar un album
+
 @app.route("/albums/<id_album>", methods = ['DELETE'])
 def eliminar_album(id_album):
     try:
@@ -247,6 +250,7 @@ def eliminar_album(id_album):
         return jsonify({'success': False}), 500
     
 # Ruta para actualizar un album
+
 @app.route("/albums/", methods = ['PUT'])
 def actualizar_album():
     id = request.json['id']
@@ -275,6 +279,33 @@ def actualizar_album():
     except:
         return jsonify({'success': False}), 500
 
+# Ruta para obtener los albumes de una banda
+
+@app.route("/albums/banda/<id_banda>", methods = ['GET'])
+def obtener_albums_banda(id_banda):
+    try:
+        albums = Album.query.where(Album.banda_id == id_banda).all()
+
+        tabla_albums = []
+
+        for album in albums:
+            id = album.id
+            nombre = album.nombre
+            anio_publicado = album.anio_publicado
+            banda_id = album.banda_id
+            imagen = album.imagen
+            
+            tabla_albums.append({
+                'id': id,
+                'nombre': nombre,
+                'anio_publicado': anio_publicado,
+                'banda_id': banda_id,
+                'imagen': imagen
+            })
+
+        return jsonify(tabla_albums)
+    except:
+        return jsonify({'message': 'Error al obtener los albums de la banda'}), 500
 
 if __name__ == '__main__':
     print('Iniciando servidor en http://localhost:5000')
