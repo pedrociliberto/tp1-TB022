@@ -46,7 +46,7 @@ fetch(`http://localhost:5000/bandas/${id}`)
 
 /* ------------------------------------------- */
 
-function response_delete(response) {
+function response_delete (response) {
     return response.json()
 }
 
