@@ -47,9 +47,9 @@ function response_delete(response) {
 
 function handle_delete (data) {
     if (data.success === true) {
-        window.location.href = "/bandas";
+        window.location.href = "/albums";
     } else {
-        alert("No se pudo eliminar la banda")
+        alert("No se pudo eliminar el album.")
     }
 }
 
