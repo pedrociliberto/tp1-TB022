@@ -136,6 +136,15 @@ def eliminar_banda(id_banda):
         return jsonify({'success': True})
     except:
         return jsonify({'success': False}), 500
+    
+# Ruta para obtener el nombre de una banda por su id
+@app.route("/bandas/<id_banda>", methods = ['GET'])
+def obtener_nombre_banda(id_banda):
+    try:
+        banda = Banda.query.where(Banda.id == id_banda).first()
+        return jsonify({'nombre': banda.nombre})
+    except:
+        return None
 
 # Ruta para obtener todos los albums
 
