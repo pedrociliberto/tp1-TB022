@@ -19,8 +19,18 @@ function parse_albums (albums) {
         const name = document.createElement("h3");
         name.innerHTML = albums[index].nombre;
 
+        const band_name = document.createElement("h4");
+
+        fetch(`http://localhost:5000/bandas/${albums[index].banda_id}`)
+            .then((response) => response.json())
+            .then((band) => {
+                band_name.innerHTML = band.nombre;
+            })
+            .catch(handle_error);
+
         card.append(image);
         card.append(name);
+        card.append(band_name);
 
         album.append(card);
 
