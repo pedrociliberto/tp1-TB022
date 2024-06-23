@@ -129,7 +129,9 @@ def obtener_banda(id_banda):
 @app.route("/bandas/<id_banda>", methods = ['DELETE'])
 def eliminar_banda(id_banda):
     try:
+        Album.query.filter_by(banda_id = id_banda).delete()
         Banda.query.filter_by(id = id_banda).delete()
+
         db.session.commit()
         return jsonify({'success': True})
     except:
