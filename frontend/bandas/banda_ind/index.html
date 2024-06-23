@@ -47,6 +47,27 @@
             height: 70%;    
         }
 
+        #to-albums {
+            width: 180px;
+            height: 30px;
+            margin: 0;
+            margin-left: 20px;
+            margin-right: 20px;
+            color: rgb(2, 2, 38);
+            background-color: aliceblue;
+            text-decoration: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #to-albums:hover {
+            background-color: rgb(229, 243, 255);
+            color: rgb(2, 2, 38);
+            font-weight: bold;
+            transition: ease-in-out 0.1s;
+        }
+
         #title {
             margin: 0;
             margin-bottom: 40px;
@@ -136,6 +157,55 @@
             transition: ease-in-out 0.1s;
         }
 
+        #container-albums {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 50px;
+            background-color: aqua;
+        }
+
+        .card {
+            width: 300px;
+            height: 300px;
+            margin: 10px;
+            padding: 0;
+            background-color: #444;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+            color: white;
+            text-decoration: none;
+            background-color: #3e3e3e;
+        }
+
+        .card:hover {
+            background-color: #4b4b4b;
+            transition: ease-in-out 0.2s;
+        }
+
+        .card h3 {
+            margin: 0;
+            margin-top: 10px;
+            padding: 0;
+        }
+
+        .card h4 {
+            margin: 0;
+            margin-bottom: 10px;
+            padding: 0;
+            color: bisque;
+        }
+
+        .album-image {
+            width: 70%;
+            height: 70%;
+            border-radius: 20px;
+            margin-top: 10px;
+        }
+
     </style>
     
 </head>
@@ -169,7 +239,10 @@
                 <button id="btn-eliminar" onclick="eliminar_banda()">Eliminar</button>
             </div>
         </div>
+    </div>
 
+    <div id="container-albums">
+        
     </div>
     
     <script src="dynamics-banda-ind.js">
