@@ -226,6 +226,47 @@ def crear_album():
     except:
         return jsonify({'success': False}), 500
 
+# Ruta para eliminar un album
+@app.route("/albums/<id_album>", methods = ['DELETE'])
+def eliminar_album(id_album):
+    try:
+        Album.query.filter_by(id = id_album).delete()
+        db.session.commit()
+
+        return jsonify({'success': True})
+    except:
+        return jsonify({'success': False}), 500
+    
+# Ruta para actualizar un album
+@app.route("/albums/", methods = ['PUT'])
+def actualizar_album():
+    id = request.json['id']
+    nombre = request.json['nombre']
+    anio_publicado = request.json['anio_publicado']
+    banda_nombre = request.json['banda_nombre']
+    imagen = request.json['imagen']
+
+    banda = Banda.query.where(Banda.nombre == banda_nombre).first()
+
+    if not banda:
+        return jsonify({'success': False, 'message': 'La banda no existe: no es posible computar un álbum dentro de ella.'}), 400
+
+    album_actualizado = {
+        'id': id,
+        'nombre': nombre,
+        'anio_publicado': anio_publicado,
+        'banda_id': banda.id,
+        'imagen': imagen
+    }
+
+    try:
+        Album.query.filter_by(id = id).update(album_actualizado)
+        db.session.commit()
+        return jsonify({'success': True})
+    except:
+        return jsonify({'success': False}), 500
+
+
 if __name__ == '__main__':
     print('Iniciando servidor en http://localhost:5000')
     db.init_app(app)
