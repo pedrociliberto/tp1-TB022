@@ -1,8 +1,8 @@
-const params = new URLSearchParams(window.location.search);
-const id = params.get("id");
+const parametros = new URLSearchParams(window.location.search);
+const id = parametros.get("id");
 
 if (id === null || id === "" || id === undefined || isNaN(id) || id < 0 || id % 1 !== 0) {
-    window.location.href = "/";
+    window.location.href = "../";
 }
 
 function parse_data(data) {
