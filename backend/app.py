@@ -37,6 +37,8 @@ def obtener_bandas():
                 'imagen': imagen
             })
 
+        tabla_bandas.sort(key = lambda banda: banda['nombre'])
+
         return jsonify(tabla_bandas)
     except:
         return jsonify({'message': 'Error al obtener las bandas'}), 500
@@ -171,6 +173,8 @@ def obtener_albums():
                 'imagen': imagen
             })
 
+        tabla_albums.sort(key = lambda album: album['nombre'])
+
         return jsonify(tabla_albums)
     except:
         return jsonify({'message': 'Error al obtener los albums'}), 500
@@ -302,6 +306,8 @@ def obtener_albums_banda(id_banda):
                 'banda_id': banda_id,
                 'imagen': imagen
             })
+
+        tabla_albums.sort(key = lambda album: album['nombre'])
 
         return jsonify(tabla_albums)
     except:
