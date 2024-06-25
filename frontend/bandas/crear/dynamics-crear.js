@@ -45,7 +45,7 @@ function crear_banda(event) {
         .catch(handle_error)
     }
     
-    fetch("http://localhost:5000/bandas/count")
+    fetch("http://localhost:5000/bandas/max-id")
         .then(response => response.json())
         .then(count_bands)
         .catch(handle_error)
