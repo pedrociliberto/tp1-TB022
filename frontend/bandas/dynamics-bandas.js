@@ -1,3 +1,9 @@
+const parametros = new URLSearchParams(window.location.search);
+const sort = parametros.get('sort');
+
+const select = document.getElementById("sort");
+select.value = sort;
+
 function handle_response (response) {
     return response.json()
 }
@@ -36,7 +42,8 @@ function handle_error (error) {
     console.log("ERROR", error)
 }
 
-fetch("http://localhost:5000/bandas/")
+fetch(`http://localhost:5000/bandas/?sort=${sort}`)
     .then(handle_response)
     .then(parse_bandas)
     .catch(handle_error)
+
