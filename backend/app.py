@@ -172,6 +172,8 @@ def obtener_albums():
     try:
         albums = Album.query.all()
 
+        sort = request.args.get('sort')
+
         tabla_albums = []
 
         for album in albums:
@@ -189,7 +191,20 @@ def obtener_albums():
                 'imagen': imagen
             })
 
-        tabla_albums.sort(key = lambda album: album['nombre'])
+        print("SORT:", sort)
+
+        if sort == 'ingreso-viejas':
+            tabla_albums.sort(key = lambda album: album['id'])
+        elif sort == 'ingreso-nuevas':
+            tabla_albums.sort(key = lambda album: album['id'], reverse = True)
+        elif sort == 'a-z':
+            tabla_albums.sort(key = lambda album: album['nombre'])
+        elif sort == 'z-a':
+            tabla_albums.sort(key = lambda album: album['nombre'], reverse = True)
+        elif sort == 'antiguos':
+            tabla_albums.sort(key = lambda album: (album['anio_publicado'], album['nombre']))
+        elif sort == 'recientes':
+            tabla_albums.sort(key = lambda album: (album['anio_publicado'], album['nombre']), reverse = True)
 
         return jsonify(tabla_albums)
     except:
