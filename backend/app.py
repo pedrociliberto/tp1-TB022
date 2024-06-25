@@ -61,7 +61,7 @@ def obtener_bandas():
     
 # Ruta para obtener el maximo id de las bandas
 
-@app.route("/bandas/count", methods = ['GET'])
+@app.route("/bandas/max-id", methods = ['GET'])
 def obtener_cantidad_bandas():
     try:
         maximo_id = db.session.query(db.func.max(Banda.id)).scalar()
@@ -157,7 +157,7 @@ def eliminar_banda(id_banda):
     
 # Ruta para obtener el nombre de una banda por su id
 
-@app.route("/bandas/<id_banda>", methods = ['GET'])
+@app.route("/bandas/<id_banda>/nombre", methods = ['GET'])
 def obtener_nombre_banda(id_banda):
     try:
         banda = Banda.query.where(Banda.id == id_banda).first()
@@ -212,7 +212,7 @@ def obtener_albums():
     
 # Ruta para obtener el maximo id de los albums
 
-@app.route("/albums/count", methods = ['GET'])
+@app.route("/albums/max-id", methods = ['GET'])
 def obtener_cantidad_albums():
     try:
         maximo_id = db.session.query(db.func.max(Album.id)).scalar()
