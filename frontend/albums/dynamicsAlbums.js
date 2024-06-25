@@ -27,7 +27,7 @@ function parse_albums (albums) {
 
         const band_name = document.createElement("h4");
 
-        fetch(`http://localhost:5000/bandas/${albums[index].banda_id}`)
+        fetch(`http://localhost:5000/bandas/${albums[index].banda_id}/nombre`)
             .then((response) => response.json())
             .then((band) => {
                 band_name.innerHTML = band.nombre;
