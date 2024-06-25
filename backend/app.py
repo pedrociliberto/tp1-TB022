@@ -14,9 +14,10 @@ port = 5000
 
 @app.route("/bandas/", methods = ['GET'])
 def obtener_bandas():
-
     try:
         bandas = Banda.query.all()
+
+        sort = request.args.get('sort')
 
         tabla_bandas = []
 
@@ -37,7 +38,22 @@ def obtener_bandas():
                 'imagen': imagen
             })
 
-        tabla_bandas.sort(key = lambda banda: banda['nombre'])
+        if sort == 'ingreso-viejas':
+            tabla_bandas.sort(key = lambda banda: banda['id'])
+        elif sort == 'ingreso-nuevas':
+            tabla_bandas.sort(key = lambda banda: banda['id'], reverse = True)
+        elif sort == 'a-z':
+            tabla_bandas.sort(key = lambda banda: banda['nombre'])
+        elif sort == 'z-a':
+            tabla_bandas.sort(key = lambda banda: banda['nombre'], reverse = True)
+        elif sort == 'antiguas':
+            tabla_bandas.sort(key = lambda banda: banda['anio_creacion'])
+        elif sort == 'recientes':
+            tabla_bandas.sort(key = lambda banda: banda['anio_creacion'], reverse = True)
+        elif sort == 'genero':
+            tabla_bandas.sort(key = lambda banda: banda['genero'])
+        elif sort == 'pais':
+            tabla_bandas.sort(key = lambda banda: banda['pais_origen'])
 
         return jsonify(tabla_bandas)
     except:
@@ -122,7 +138,7 @@ def obtener_banda(id_banda):
             'pais_origen': banda.pais_origen,
             'imagen': banda.imagen
         }
-        return banda_data
+        return jsonify(banda_data)
     except:
         return jsonify({'message': 'Error al obtener la banda'}), 500
     
