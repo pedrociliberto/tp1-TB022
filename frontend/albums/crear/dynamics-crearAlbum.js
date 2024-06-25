@@ -43,7 +43,7 @@ function crear_album(event) {
         .catch(handle_error)
     }
     
-    fetch("http://localhost:5000/albums/count")
+    fetch("http://localhost:5000/albums/max-id")
         .then(response => response.json())
         .then(count_albums)
         .catch(handle_error)
