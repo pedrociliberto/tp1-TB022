@@ -20,4 +20,3 @@ class Album(db.Model):
     anio_publicado = db.Column(db.Integer)
     banda_id = db.Column(db.Integer, db.ForeignKey('bandas.id'), nullable=False)
     imagen = db.Column(db.String(200))
-    relacion_banda = db.relationship('Banda', backref=db.backref('albums', lazy=True))
