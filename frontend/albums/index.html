@@ -81,6 +81,41 @@
             height: 70%;
         }
 
+        #form-div {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        form {
+            width: 15%;
+            height: 40px;
+            margin: 0;
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        select {
+            font-family: 'Ubuntu';
+            text-align: center;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(67, 67, 67);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: large;
+        }
+
+        select:hover {
+            background-color: rgb(85, 85, 85);
+            transition: ease-in-out 0.2s;
+            color: white;
+        }
+
         #container-albums {
             display: flex;
             flex-wrap: wrap;
@@ -128,9 +163,6 @@
             border-radius: 20px;
             margin-top: 10px;
         }
-
-
-
     </style>
 </head>
 <body>
@@ -142,10 +174,24 @@
         </a>
     </header>
 
+    <div id="form-div">
+        <form>
+            <select name="sort" id="sort" onchange="this.form.submit()">
+                <option value="default" selected>Ordenar por...</option>
+                <option value="ingreso-nuevas">Orden de ingreso ↑</option>
+                <option value="ingreso-viejas">Orden de ingreso ↓</option>
+                <option value="a-z">Nombre (A-Z)</option>
+                <option value="z-a">Nombre (Z-A)</option>
+                <option value="antiguos">Antiguos</option>
+                <option value="recientes">Recientes</option>
+            </select>
+        </form>
+    </div>
+
     <div id="container-albums">
         
     </div>
 
-    <script src="dynamics-albums.js"></script>
+    <script src="dynamicsAlbums.js"></script>
 </body>
 </html>
