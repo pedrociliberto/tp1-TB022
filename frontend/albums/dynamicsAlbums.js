@@ -1,3 +1,9 @@
+const parametros = new URLSearchParams(window.location.search);
+const sort = parametros.get('sort');
+
+const select = document.getElementById("sort");
+select.value = sort;
+
 function parse_albums (albums) {
     console.log("TENGO ALBUMS")
     
@@ -42,7 +48,7 @@ function handle_error (error) {
     console.error("ERROR", error)
 }
 
-fetch("http://localhost:5000/albums/")
+fetch(`http://localhost:5000/albums?sort=${sort}`)
     .then((response) => response.json())
     .then(parse_albums)
     .catch(handle_error)
