@@ -17,7 +17,7 @@ En la página se podrá acceder a un catálogo de bandas famosas, como así de u
 - Eliminar bandas/álbumes 
 - Acceder a los detalles de cada banda individual, al igual que a sus álbumes de manera aislada
 - Acceder a los detalles de cada álbum individual
-- Ordenar la vista de bandas/álbumes según determinada características
+- Ordenar la vista de bandas/álbumes según determinada característica
 
 ## Configurar el proyecto localmente (desde el comienzo)
 
