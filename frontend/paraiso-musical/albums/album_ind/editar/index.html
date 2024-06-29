@@ -112,10 +112,10 @@
 </head>
 <body>
     <header>
-        <a href="../">
+        <a href="../" id="back">
             <img src="https://cdn-icons-png.flaticon.com/128/3114/3114883.png" alt="">
         </a>
-        <h1 id="title">Crear Nuevo Álbum</h1>
+        <h1 id="title">Editar Álbum</h1>
         <a href="../../../">
             <img src="https://cdn-icons-png.flaticon.com/128/2549/2549900.png" alt="">
         </a>
@@ -147,6 +147,8 @@
         if (id === null || id === "" || id === undefined || isNaN(id) || id < 0 || id % 1 !== 0) {
             window.location.href = "/";
         }
+
+        document.getElementById("back").href = `/paraiso-musical/albums/album_ind?id=${id}`
 
         function parse_data(data) {
             document.getElementById("nombre").value = data.nombre
