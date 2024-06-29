@@ -5,6 +5,8 @@ if (id === null || id === "" || id === undefined || isNaN(id) || id < 0 || id % 
     window.location.href = "../";
 }
 
+document.getElementById("back").setAttribute("href", `/paraiso-musical/bandas/banda_ind/?id=${id}`)
+
 function parse_data(data) {
     document.getElementById("nombre").value = data.nombre
     document.getElementById("genero").value = data.genero

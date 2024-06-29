@@ -1,11 +1,20 @@
 const parametros = new URLSearchParams(window.location.search);
 const id = parametros.get("id");
 
-if (id === null || id === "" || id === undefined || isNaN(id) || id < 0 || id % 1 !== 0) {
-    window.location.href = "/paraiso-musical/bandas";
+function manage_id (data) {
+    if (id === null || id === "" || id === undefined || isNaN(id) || id < 0 || id > data.max_id || id % 1 !== 0) {
+        window.location.href = "/paraiso-musical/bandas?sort=ingreso-nuevas";
+    }
 }
 
+fetch(`http://localhost:5000/bandas/max-id`)
+    .then((res) => res.json())
+    .then(manage_id)
+    .catch(handle_error)
+
 document.getElementById("btn-editar").setAttribute("href", `/paraiso-musical/bandas/banda_ind/editar?id=${id}`)
+
+/* ------------------------------------------- */
 
 function handle_response (response) {
     return response.json()
@@ -73,9 +82,7 @@ function eliminar_banda () {
 
 /* ------------------------------------------- */
 
-function parse_albums (albums) {
-    console.log("TENGO ALBUMS")
-    
+function parse_albums (albums) {    
     for (let index = 0; index < albums.length; index++) {
         
         container = document.getElementById("container-albums");
