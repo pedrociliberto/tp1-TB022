@@ -25,7 +25,7 @@ fetch(`http://localhost:5000/bandas/${id}`)
 
 function update_data(data) {
     if (data.success === true) {
-        window.location.href = `/bandas/banda_ind?id=${id}`
+        window.location.href = `/paraiso-musical/bandas/banda_ind?id=${id}`
     } else {
         alert("No se pudo editar la banda")
     }

@@ -2,10 +2,10 @@ const parametros = new URLSearchParams(window.location.search);
 const id = parametros.get("id");
 
 if (id === null || id === "" || id === undefined || isNaN(id) || id < 0 || id % 1 !== 0) {
-    window.location.href = "/bandas";
+    window.location.href = "/paraiso-musical/bandas";
 }
 
-document.getElementById("btn-editar").setAttribute("href", `/bandas/banda_ind/editar?id=${id}`)
+document.getElementById("btn-editar").setAttribute("href", `/paraiso-musical/bandas/banda_ind/editar?id=${id}`)
 
 function handle_response (response) {
     return response.json()
@@ -50,7 +50,7 @@ function response_delete (response) {
 
 function handle_delete (data) {
     if (data.success === true) {
-        window.location.href = "/bandas";
+        window.location.href = "/paraiso-musical/bandas";
     } else {
         alert("No se pudo eliminar la banda")
     }
@@ -87,7 +87,7 @@ function parse_albums (albums) {
 
         const card = document.createElement("a");
         card.setAttribute("class", "card");
-        card.setAttribute("href", `/albums/album_ind?id=${albums[index].id}`);
+        card.setAttribute("href", `/paraiso-musical/albums/album_ind?id=${albums[index].id}`);
 
         const image = document.createElement("img");
         image.setAttribute("class", "album-image");

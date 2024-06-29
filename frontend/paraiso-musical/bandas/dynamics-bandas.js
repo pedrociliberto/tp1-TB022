@@ -20,7 +20,7 @@ function parse_bandas (bandas) {
 
         const card = document.createElement("a");
         card.setAttribute("class", "card");
-        card.setAttribute("href", `/bandas/banda_ind?id=${bandas[index].id}`);
+        card.setAttribute("href", `/paraiso-musical/bandas/banda_ind?id=${bandas[index].id}`);
 
         const image = document.createElement("img");
         image.setAttribute("class", "band-image");

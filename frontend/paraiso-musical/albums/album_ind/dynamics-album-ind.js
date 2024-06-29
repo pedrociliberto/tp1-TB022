@@ -2,10 +2,10 @@ const parametros = new URLSearchParams(window.location.search);
 const id = parametros.get("id");
 
 if (id === null || id === "" || id === undefined || isNaN(id) || id < 0 || id % 1 !== 0) {
-    window.location.href = "/bandas";
+    window.location.href = "/paraiso-musical/albums";
 }
 
-document.getElementById("btn-editar").setAttribute("href", `/albums/album_ind/editar?id=${id}`)
+document.getElementById("btn-editar").setAttribute("href", `/paraiso-musical/albums/album_ind/editar?id=${id}`)
 
 function handle_response (response) {
     return response.json()
@@ -47,7 +47,7 @@ function response_delete(response) {
 
 function handle_delete (data) {
     if (data.success === true) {
-        window.location.href = "/albums";
+        window.location.href = "/paraiso-musical/albums";
     } else {
         alert("No se pudo eliminar el album.")
     }

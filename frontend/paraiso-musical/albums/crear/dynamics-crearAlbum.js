@@ -1,6 +1,6 @@
 function finish_process(data) {
     if (data.success === true) {
-        window.location.href = `/albums/album_ind?id=${data.id}`
+        window.location.href = `/paraiso-musical/albums/album_ind?id=${data.id}`
     } else {
         alert("Error al crear album.")
     }

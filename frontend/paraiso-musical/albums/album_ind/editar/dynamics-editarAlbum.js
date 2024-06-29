@@ -24,7 +24,7 @@ fetch(`http://localhost:5000/albums/${id}`)
 
 function update_data(data) {
     if (data.success === true) {
-        window.location.href = `/albums/album_ind?id=${id}`
+        window.location.href = `/paraiso-musical/albums/album_ind?id=${id}`
     } else {
         alert(data.message)
     }

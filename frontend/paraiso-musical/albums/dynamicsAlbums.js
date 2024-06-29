@@ -16,7 +16,7 @@ function parse_albums (albums) {
 
         const card = document.createElement("a");
         card.setAttribute("class", "card");
-        card.setAttribute("href", `/albums/album_ind?id=${albums[index].id}`);
+        card.setAttribute("href", `/paraiso-musical/albums/album_ind?id=${albums[index].id}`);
 
         const image = document.createElement("img");
         image.setAttribute("class", "album-image");
