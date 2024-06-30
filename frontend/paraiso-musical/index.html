@@ -21,7 +21,6 @@
             text-align: center;
         }
 
-
         h1 {
             text-align: center;
         }
@@ -67,8 +66,21 @@
             color: bisque;
         }
 
+        #info-secciones {
+            margin: 0;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            width: 100%;
+        }
+
+        #info-secciones p {
+            width: 22%;
+            line-height: 1.5;
+        }
+
         #card-section {
-            height: 330px;
+            height: 280px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -76,9 +88,9 @@
 
         #card-list {
             display: flex;
-            justify-content: space-around;
+            justify-content: space-evenly;
             align-items: center;
-            width: 70%;
+            width: 100%;
             height: 100%;
             margin: 0;
             padding: 0;
@@ -86,9 +98,7 @@
 
         #card-list li {    
             list-style-type: none;
-            width: 30%;
-            background-color: beige;
-            height: 80%;
+            height: 100%;
             border-radius: 20px;
         }
 
@@ -126,19 +136,19 @@
             <h3>
                 Bienvenido a <em>Paraíso Musical</em>, el lugar donde encontrarás toda la información sobre tus bandas y álbumes favoritos.
             </h3>
-            <br>
-            <p>
-                En la sección de <b>Bandas</b> podrás encontrar información sobre tus bandas favoritas, como su nombre, género, año de formación y país de origen.
-            </p>
-            <p>
-                En la sección de <b>Álbumes</b> podrás encontrar información sobre tus álbumes favoritos, como su nombre, año de lanzamiento y la banda a la que pertenecen.
-            </p>
-            <p>
-                Podrás acceder a cada sección a través del menú de navegación ubicado en la parte superior de la página, o haciendo clic en las imágenes que aparecen a continuación.
-            </p>
+            <br><br>
+            <div id="info-secciones">
+                <p>
+                    En la sección de <b>BANDAS</b> podrás encontrar información sobre tus bandas favoritas, como su nombre, género, año de formación, país de origen, y sus álbumes.
+                </p>
+                <p>
+                    En la sección de <b>ÁLBUMES</b> podrás encontrar información sobre tus álbumes favoritos, como su nombre, año de lanzamiento y la banda a la que pertenecen.
+                </p>
+            </div>
+            
         </main>
 
-        <br><br>
+        <br>
         <section id="card-section">
             <ul id="card-list">
                 <li>
