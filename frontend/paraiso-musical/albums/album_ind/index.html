@@ -201,7 +201,7 @@
 
             const name = document.getElementById("title")
             if (album.nombre === undefined) { // No existe el álbum, porque se ingresó un id fuera de rango
-                window.location.href = "/albums";
+                window.location.href = "/paraiso-musical/albums?sort=ingreso-nuevas";
             }
             name.innerHTML = album.nombre
 
